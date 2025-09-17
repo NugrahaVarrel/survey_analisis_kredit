@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CreditScore } from '../../interface/credit_score';
 import { dummyCreditScores } from '../../data';
+import { Status } from '../../interface/status';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class CreditScoreService {
 
   getCreditScoreById(id: number) {
     return this.creditScoreData.find(creditScore => creditScore.id === id);
+  }
+
+  generateId() {
+    return this.creditScoreData.length + 1;
   }
 
   countCreditScores(collateral_condition: string, loan: number, salary: number) {
@@ -53,11 +58,11 @@ export class CreditScoreService {
     }
 
     // Tentukan status berdasarkan score
-    let status = 'Pending';
+    let status = Status.PENDING;
     if (score >= 80) {
-      status = 'Approved';
+      status = Status.APPROVED;
     } else if (score < 50) {
-      status = 'Rejected';
+      status = Status.REJECTED;
     }
 
     return { score, status };

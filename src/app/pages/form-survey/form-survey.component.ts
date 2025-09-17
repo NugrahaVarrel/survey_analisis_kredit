@@ -7,6 +7,8 @@ import { Creditur } from '../../shared/interface/creditur';
 import { CrediturService } from '../../shared/service/creditur-service/creditur-service.service';
 import { SurveyService } from '../../shared/service/survey-service/survey-service.service';
 import { Survey } from '../../shared/interface/survey';
+import { CreditScoreService } from '../../shared/service/credit-score-service/credit-score-service.service';
+import { CreditScore } from '../../shared/interface/credit_score';
 
 @Component({
   selector: 'app-form-survey',
@@ -21,7 +23,7 @@ export class FormSurveyComponent implements OnInit{
   id: number = 0;
 
   creditur: Creditur | undefined;
-  constructor(private route: ActivatedRoute, private router: Router, private crediturService: CrediturService, private surveyService: SurveyService) {
+  constructor(private route: ActivatedRoute, private router: Router, private crediturService: CrediturService, private surveyService: SurveyService, private creditScoreService: CreditScoreService) {
 
     this.id = route.snapshot.params['id'];
 
@@ -46,8 +48,19 @@ export class FormSurveyComponent implements OnInit{
       collateral_condition: this.form.value.collateral_condition
     };
 
+
     this.surveyService.addSurvey(survey);
     this.crediturService.updateCrediturSurveyDone(this.id);
+    if(this.creditur){
+      const creditScoreAndStatus = this.creditScoreService.countCreditScores(survey.collateral_condition, this.creditur.loan, this.creditur.salary)
+      const creditScore: CreditScore = {
+        id: this.creditScoreService.generateId(),
+        name: this.creditur.name,
+        credit_score: creditScoreAndStatus.score,
+        status: creditScoreAndStatus.status
+      }
+      this.creditScoreService.addCreditScore(creditScore)
+    }
     this.router.navigate(['']);
   }
 }
