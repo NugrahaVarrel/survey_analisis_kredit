@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #1e1e2f;
+  color: #f0f0f0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: rgba(46, 46, 70, 0.9);
+  backdrop-filter: blur(10px);
+  padding: 15px 30px;
+  display: flex; justify-content: space-between; align-items: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+header h1 {
+  background: linear-gradient(45deg, #4ea8de, #1dd1a1);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+ 
+header nav a, header a {
+  color: #f0f0f0; margin: 0 12px; text-decoration: none; font-weight: 500;
+  transition: 0.3s;
+}
+header nav a:hover, header a:hover {
+  color: #4ea8de;
+  text-shadow: 0 0 10px rgba(78,168,222,0.7);
+}

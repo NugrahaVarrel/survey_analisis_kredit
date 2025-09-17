@@ -1,1 +1,34 @@
-<p>form-survey works!</p>
+<header>
+  <h1>Form Survey</h1>
+  <a href=""><- Kembali</a>
+</header>
+
+<div class="form-container">
+  <form action="" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div class="form-group">
+      <label for="occupation">Occupation Check</label>
+      <select formControlName="occupation">
+        <option value="true">Sesuai</option>
+        <option value="false">Tidak Sesuai</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="address">Address Check</label>
+      <select formControlName="address">
+        <option value="true">Sesuai</option>
+        <option value="false">Tidak Sesuai</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="collateral_condition">Collateral Condition Check</label>
+      <select
+        name="collateral_condition"
+        formControlName="collateral_condition"
+      >
+        <option value="GOOD">Good</option>
+        <option value="BAD">Bad</option>
+      </select>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>
