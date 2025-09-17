@@ -7,4 +7,5 @@ export interface Creditur {
     salary: number;
     loan: number;
     collateral: string;
+    isSurveyDone: boolean;
 }

@@ -1,20 +1,25 @@
 <div>
-    <h2>{{tableName}}</h2>
-    <table>
-        <thead>
-            <tr>
-                <th *ngFor="let header of headers">{{header | uppercase}}</th>
-                <th *ngIf="action">Action</th>
-            </tr>
-                
-        </thead>
-        <tbody>
-            <tr *ngFor="let data of data">
-                <td *ngFor="let header of headers">{{data[header].toLocaleString()}}</td>
-                <td *ngIf="action">
-                    <a [routerLink]="(action.route + '/' + data.id)">{{action.name}}</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+  <h2>{{ tableName }}</h2>
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let header of headers">{{ header | uppercase }}</th>
+        <th *ngIf="action">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of data">
+        <td *ngFor="let header of headers">
+          {{ data[header].toLocaleString() }}
+        </td>
+        <td *ngIf="action">
+          @if (isDisabled(data.id) && tableName.includes('Creditur')) {
+          <span>Already Surveyed</span>
+          } @else {
+          <a [routerLink]="action.route + '/' + data.id">{{ action.name }}</a>
+          }
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

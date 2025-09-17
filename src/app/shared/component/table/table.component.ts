@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CrediturService } from '../../service/creditur-service/creditur-service.service';
 
 @Component({
   selector: 'app-table',
@@ -14,4 +15,12 @@ export class TableComponent {
   @Input() headers?: string[] = [];
   @Input() data?: any[] = [];
   @Input() action?: any;
+
+  constructor(private crediturService: CrediturService) {
+
+  }
+
+  isDisabled(id: number) {
+    return this.crediturService.isSurveyDone(id);
+  }
 }
