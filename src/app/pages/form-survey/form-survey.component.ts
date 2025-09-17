@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Condition } from '../../shared/interface/condition';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Creditur } from '../../shared/interface/creditur';
@@ -17,20 +22,27 @@ import { CreditScore } from '../../shared/interface/credit_score';
   templateUrl: './form-survey.component.html',
   styleUrl: './form-survey.component.scss',
 })
-export class FormSurveyComponent implements OnInit{
+export class FormSurveyComponent implements OnInit {
   form: FormGroup;
 
   id: number = 0;
 
   creditur: Creditur | undefined;
-  constructor(private route: ActivatedRoute, private router: Router, private crediturService: CrediturService, private surveyService: SurveyService, private creditScoreService: CreditScoreService) {
-
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private crediturService: CrediturService,
+    private surveyService: SurveyService,
+    private creditScoreService: CreditScoreService
+  ) {
     this.id = route.snapshot.params['id'];
 
     this.form = new FormGroup({
       occupation: new FormControl(null, [Validators.required]),
       address: new FormControl(null, [Validators.required]),
-      collateral_condition: new FormControl(Condition.GOOD, [Validators.required]),
+      collateral_condition: new FormControl(Condition.GOOD, [
+        Validators.required,
+      ]),
     });
   }
 
@@ -45,21 +57,24 @@ export class FormSurveyComponent implements OnInit{
       id_creditur: Number(this.id),
       val_occupation: this.form.value.occupation === 'true',
       val_address: this.form.value.address === 'true',
-      collateral_condition: this.form.value.collateral_condition
+      collateral_condition: this.form.value.collateral_condition,
     };
-
 
     this.surveyService.addSurvey(survey);
     this.crediturService.updateCrediturSurveyDone(this.id);
-    if(this.creditur){
-      const creditScoreAndStatus = this.creditScoreService.countCreditScores(survey.collateral_condition, this.creditur.loan, this.creditur.salary)
+    if (this.creditur) {
+      const creditScoreAndStatus = this.creditScoreService.countCreditScores(
+        survey.collateral_condition,
+        this.creditur.loan,
+        this.creditur.salary
+      );
       const creditScore: CreditScore = {
         id: this.creditScoreService.generateId(),
         name: this.creditur.name,
         credit_score: creditScoreAndStatus.score,
-        status: creditScoreAndStatus.status
-      }
-      this.creditScoreService.addCreditScore(creditScore)
+        status: creditScoreAndStatus.status,
+      };
+      this.creditScoreService.addCreditScore(creditScore);
     }
     this.router.navigate(['']);
   }

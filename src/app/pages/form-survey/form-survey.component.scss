@@ -140,7 +140,15 @@ header {
         box-shadow: 0 0 18px rgba(78, 168, 222, 0.8);
         transform: scale(1.02);
       }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
     }
   }
 }
 
+.error{
+  color: red;
+}

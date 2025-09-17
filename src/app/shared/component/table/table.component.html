@@ -3,21 +3,37 @@
   <table>
     <thead>
       <tr>
-        <th *ngFor="let header of headers">{{ header | uppercase }}</th>
+        <ng-container *ngFor="let header of headers">
+          <th *ngIf="!header.startsWith('is')">
+            {{ header | uppercase }}
+          </th>
+        </ng-container>
         <th *ngIf="action">Action</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let data of data">
-        <td *ngFor="let header of headers">
-          {{ data[header].toLocaleString() }}
-        </td>
+        <ng-container *ngFor="let header of headers">
+          <td *ngIf="!header.startsWith('is')">
+            {{ data[header]?.toLocaleString() }}
+          </td>
+        </ng-container>
+
         <td *ngIf="action">
-          @if (isDisabled(data.id) && tableName.includes('Creditur')) {
-          <span>Already Surveyed</span>
-          } @else {
-          <a [routerLink]="action.route + '/' + data.id">{{ action.name }}</a>
-          }
+          <ng-container *ngIf="headers?.includes('isSurveyDone')">
+            <ng-container *ngIf="data['isSurveyDone']; else showLink">
+              <span>Already Surveyed</span>
+            </ng-container>
+            <ng-template #showLink>
+              <a [routerLink]="action.route + '/' + data.id">{{
+                action.name
+              }}</a>
+            </ng-template>
+          </ng-container>
+          
+          <ng-container *ngIf="!headers?.includes('isSurveyDone')">
+            <a [routerLink]="action.route + '/' + data.id">{{ action.name }}</a>
+          </ng-container>
         </td>
       </tr>
     </tbody>

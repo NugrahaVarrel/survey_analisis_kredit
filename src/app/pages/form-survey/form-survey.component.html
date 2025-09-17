@@ -10,8 +10,6 @@
       <p>{{ creditur?.age }}</p>
       <p>{{ creditur?.address }}</p>
       <p>{{ creditur?.occupation }}</p>
-      <p>{{ creditur?.salary | currency:'IDR'}}</p>
-      <p>{{ creditur?.loan | currency:'IDR' }}</p>
       <p>{{ creditur?.collateral }}</p>
     </div>
   <form action="" (ngSubmit)="onSubmit()" [formGroup]="form">
@@ -21,6 +19,7 @@
         <option value="true">Sesuai</option>
         <option value="false">Tidak Sesuai</option>
       </select>
+      <p *ngIf="form.get('occupation')?.invalid && form.get('occupation')?.touched" class="error">Occupation Check Required</p>
     </div>
     <div class="form-group">
       <label for="address">Address Check</label>
@@ -28,6 +27,7 @@
         <option value="true">Sesuai</option>
         <option value="false">Tidak Sesuai</option>
       </select>
+      <p *ngIf="form.get('address')?.invalid && form.get('address')?.touched" class="error">Address Check Required</p>
     </div>
     <div class="form-group">
       <label for="collateral_condition">Collateral Condition Check</label>
@@ -38,7 +38,8 @@
         <option value="GOOD">Good</option>
         <option value="BAD">Bad</option>
       </select>
+      <p *ngIf="form.get('collateral_condition')?.invalid && form.get('collateral_condition')?.touched" class="error">Collateral Condition Check Required</p>
     </div>
-    <button type="submit">Submit</button>
+    <button type="submit" [disabled]="!form.valid">Submit</button>
   </form>
 </div>

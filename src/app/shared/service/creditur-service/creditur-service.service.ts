@@ -12,18 +12,7 @@ export class CrediturService {
   }
 
   getAllCreditur() {
-    return this.crediturData.map((creditur) => {
-      return {
-        id: creditur.id,
-        name: creditur.name,
-        age: creditur.age,
-        address: creditur.address,
-        occupation: creditur.occupation,
-        salary: creditur.salary,
-        loan: creditur.loan,
-        collateral: creditur.collateral,
-      };
-    });
+    return this.crediturData
   }
 
   addCreditur(creditur: Creditur) {
