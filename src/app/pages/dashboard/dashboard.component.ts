@@ -4,11 +4,12 @@ import { SurveyService } from '../../shared/service/survey-service/survey-servic
 import { CrediturService } from '../../shared/service/creditur-service/creditur-service.service';
 import { CreditScoreService } from '../../shared/service/credit-score-service/credit-score-service.service';
 import { TableMapping } from '../../shared/interface/table_mapping';
+import { HeaderComponent } from '../../shared/component/header/header.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [TableComponent],
+  imports: [TableComponent, HeaderComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
@@ -48,7 +49,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.surveyDataObject.data = this.surveyService.getAllSurvey();
     this.surveyDataObject.headers = Object.keys(this.surveyDataObject.data[0]);
-    console.log(this.surveyDataObject.data);
 
     this.crediturDataObject.data = this.crediturService.getAllCreditur();
     this.crediturDataObject.headers = Object.keys(

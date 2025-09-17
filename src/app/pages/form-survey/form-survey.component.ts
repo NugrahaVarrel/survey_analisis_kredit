@@ -14,11 +14,12 @@ import { SurveyService } from '../../shared/service/survey-service/survey-servic
 import { Survey } from '../../shared/interface/survey';
 import { CreditScoreService } from '../../shared/service/credit-score-service/credit-score-service.service';
 import { CreditScore } from '../../shared/interface/credit_score';
+import { HeaderComponent } from '../../shared/component/header/header.component';
 
 @Component({
   selector: 'app-form-survey',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, HeaderComponent],
   templateUrl: './form-survey.component.html',
   styleUrl: './form-survey.component.scss',
 })
