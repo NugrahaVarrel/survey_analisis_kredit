@@ -14,9 +14,19 @@
     <tbody>
       <tr *ngFor="let data of data">
         <ng-container *ngFor="let header of headers">
-          <td *ngIf="!header.startsWith('is')">
-            {{ data[header]?.toLocaleString() }}
+          @if(!header.startsWith('is')){ @if(header == 'status'){
+          <td>
+            @if(data[header] == Status.PENDING){
+            <app-label text="Pending" type="warning"></app-label>
+            } @else if (data[header] == Status.APPROVED) {
+            <app-label text="Approved" type="success"></app-label>
+            } @else {
+            <app-label text="Rejected" type="danger"></app-label>
+            }
           </td>
+          } @else {
+          <td>{{ data[header].toLocaleString() }}</td>
+          } }
         </ng-container>
 
         <td *ngIf="action">
@@ -30,7 +40,7 @@
               }}</a>
             </ng-template>
           </ng-container>
-          
+
           <ng-container *ngIf="!headers?.includes('isSurveyDone')">
             <a [routerLink]="action.route + '/' + data.id">{{ action.name }}</a>
           </ng-container>

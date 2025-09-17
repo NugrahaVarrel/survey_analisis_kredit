@@ -1,0 +1,42 @@
+.label {
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+  transition: background 0.3s ease;
+
+  &.primary {
+    border: 1px solid #4ea8de;
+    background: rgba(78, 168, 222, 0.1);
+    color: #4ea8de;
+  }
+
+  &.success {
+    border: 1px solid #1dd1a1;
+    background: rgba(29, 209, 161, 0.1);
+    color: #1dd1a1;
+  }
+
+  &.warning {
+    border: 1px solid #fbc531;
+    background: rgba(251, 197, 49, 0.1);
+    color: #fbc531;
+  }
+
+  &.danger {
+    border: 1px solid #e84118;
+    background: rgba(232, 65, 24, 0.1);
+    color: #e84118;
+  }
+
+  &.info {
+    border: 1px solid #00a8ff;
+    background: rgba(0, 168, 255, 0.1);
+    color: #00a8ff;
+  }
+}
