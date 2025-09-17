@@ -10,7 +10,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let data of data">
-                <td *ngFor="let header of headers">{{data[header]}}</td>
+                <td *ngFor="let header of headers">{{data[header].toLocaleString()}}</td>
                 <td *ngIf="action">
                     <a [routerLink]="(action.route + '/' + data.id)">{{action.name}}</a>
                 </td>

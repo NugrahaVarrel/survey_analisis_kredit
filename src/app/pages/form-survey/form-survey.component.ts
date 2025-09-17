@@ -28,11 +28,6 @@ export class FormSurveyComponent {
   }
 
   onSubmit() {
-    // surveyData.push({
-    //   id: surveyData.length + 1,
-    //   occupation: this.form.value.occupation,
-    //   address: this.form.value.address,
-    //   collateral_condition: Condition[this.form.value.collateral_condition as keyof typeof Condition],
-    // });
+    console.log(this.form.value);
   }
 }

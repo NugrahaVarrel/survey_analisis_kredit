@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
 })
 export class TableComponent {
   @Input() tableName: string = '';
-  @Input() headers: string[] = [];
-  @Input() data: any[] = [];
-  @Input() action: any = null;
+  @Input() headers?: string[] = [];
+  @Input() data?: any[] = [];
+  @Input() action?: any;
 }
