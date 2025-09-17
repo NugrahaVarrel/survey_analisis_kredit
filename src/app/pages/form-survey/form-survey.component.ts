@@ -41,8 +41,8 @@ export class FormSurveyComponent implements OnInit{
     const survey: Survey = {
       id: surveyId,
       id_creditur: Number(this.id),
-      val_occupation: this.form.value.occupation,
-      val_address: this.form.value.address,
+      val_occupation: this.form.value.occupation === 'true',
+      val_address: this.form.value.address === 'true',
       collateral_condition: this.form.value.collateral_condition
     };
 
