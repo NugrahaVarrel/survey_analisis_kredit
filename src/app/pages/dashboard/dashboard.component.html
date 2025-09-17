@@ -1,9 +1,14 @@
+<header>
+  <h1>Dashboard</h1>
+  <a href="">+ Input Creditur</a>
+</header>
+
 <div class="dashboard">
     <section class="card">
-        <app-table [tableName]="'Survey Data'" [headers]="surveyDataObject.headers" [data]="surveyDataObject.data" [action]="surveyDataObject.action"></app-table>
+        <app-table [tableName]="'Creditur Data'" [headers]="crediturDataObject.headers" [data]="crediturDataObject.data" [action]="crediturDataObject.action"></app-table>
     </section>
     <section class="card">
-        <app-table [tableName]="'Creditur Data'" [headers]="crediturDataObject.headers" [data]="crediturDataObject.data" [action]="crediturDataObject.action"></app-table>
+        <app-table [tableName]="'Survey Data'" [headers]="surveyDataObject.headers" [data]="surveyDataObject.data" [action]="surveyDataObject.action"></app-table>
     </section>
     <section class="card">
         <app-table [tableName]="'Credit Score Data'" [headers]="creditScoreDataObject.headers" [data]="creditScoreDataObject.data"></app-table>
