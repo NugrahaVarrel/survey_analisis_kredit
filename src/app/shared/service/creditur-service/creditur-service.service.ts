@@ -31,11 +31,19 @@ export class CrediturService {
   }
 
   getCrediturById(id: number) {
-    return this.crediturData.find((creditur) => creditur.id === id);
+    return this.crediturData.find((creditur) => creditur.id == id);
   }
 
   isSurveyDone(id: number) {
-    return this.crediturData.find((creditur) => creditur.id === id)
+    return this.crediturData.find((creditur) => creditur.id == id)
       ?.isSurveyDone;
+  }
+
+  updateCrediturSurveyDone(id: number) {
+    let creditur = this.crediturData.find((creditur) => creditur.id == id);
+
+    if (creditur) {
+      creditur.isSurveyDone = true;
+    }
   }
 }

@@ -28,6 +28,10 @@ export class SurveyService {
     return this.surveyData.find(survey => survey.id === id);
   }
 
+  generateId() {
+    return this.surveyData.length + 1;
+  }
+
   getSurveyByCrediturId(id: number) {
     return this.surveyData.filter(survey => survey.id_creditur === id);
   }

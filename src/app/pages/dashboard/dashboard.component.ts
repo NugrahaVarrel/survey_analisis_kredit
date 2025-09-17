@@ -48,6 +48,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.surveyDataObject.data = this.surveyService.getAllSurvey();
     this.surveyDataObject.headers = Object.keys(this.surveyDataObject.data[0]);
+    console.log(this.surveyDataObject.data);
 
     this.crediturDataObject.data = this.crediturService.getAllCreditur();
     this.crediturDataObject.headers = Object.keys(
