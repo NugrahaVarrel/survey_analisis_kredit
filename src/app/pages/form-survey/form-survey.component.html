@@ -1,6 +1,6 @@
 <header>
   <h1>Form Survey</h1>
-  <a href=""><- Kembali</a>
+  <a href="">⬅ Kembali</a>
 </header>
 
 <div class="form-container">
@@ -10,8 +10,8 @@
       <p>{{ creditur?.age }}</p>
       <p>{{ creditur?.address }}</p>
       <p>{{ creditur?.occupation }}</p>
-      <p>{{ creditur?.salary }}</p>
-      <p>{{ creditur?.loan }}</p>
+      <p>{{ creditur?.salary | currency:'IDR'}}</p>
+      <p>{{ creditur?.loan | currency:'IDR' }}</p>
       <p>{{ creditur?.collateral }}</p>
     </div>
   <form action="" (ngSubmit)="onSubmit()" [formGroup]="form">
