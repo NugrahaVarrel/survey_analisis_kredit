@@ -13,7 +13,15 @@ export class SurveyService {
   }
 
   getAllSurvey() {
-    return this.surveyData;
+    return (this.surveyData.map(survey => {
+      return {
+        id: survey.id,
+        id_creditur: survey.id_creditur,
+        val_occupation: survey.val_occupation ? 'Sesuai' : 'Tidak Sesuai',
+        val_address: survey.val_address ? 'Sesuai' : 'Tidak Sesuai',
+        collateral_condition: survey.collateral_condition,
+      };
+    }));
   }
 
   getSurveyById(id: number) {

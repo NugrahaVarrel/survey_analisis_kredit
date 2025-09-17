@@ -1,8 +1,8 @@
-import { Condition } from "./interface/condition";
-import { CreditScore } from "./interface/credit_score";
-import { Creditur } from "./interface/creditur";
-import { Status } from "./interface/status";
-import { Survey } from "./interface/survey";
+import { Condition } from './interface/condition';
+import { CreditScore } from './interface/credit_score';
+import { Creditur } from './interface/creditur';
+import { Status } from './interface/status';
+import { Survey } from './interface/survey';
 
 export const dummyCrediturs: Creditur[] = [
   {
@@ -13,7 +13,8 @@ export const dummyCrediturs: Creditur[] = [
     occupation: 'Karyawan Swasta',
     salary: 8500000,
     loan: 15000000,
-    collateral: 'Honda Vario 160'
+    collateral: 'Honda Vario 160',
+    isSurveyDone: true,
   },
   {
     id: 2,
@@ -23,7 +24,8 @@ export const dummyCrediturs: Creditur[] = [
     occupation: 'Wiraswasta',
     salary: 10000000,
     loan: 20000000,
-    collateral: 'Honda Beat Street'
+    collateral: 'Honda Beat Street',
+    isSurveyDone: true,
   },
   {
     id: 3,
@@ -33,7 +35,8 @@ export const dummyCrediturs: Creditur[] = [
     occupation: 'Pegawai Negeri Sipil',
     salary: 12000000,
     loan: 25000000,
-    collateral: 'Honda PCX 160'
+    collateral: 'Honda PCX 160',
+    isSurveyDone: false,
   },
   {
     id: 4,
@@ -43,7 +46,8 @@ export const dummyCrediturs: Creditur[] = [
     occupation: 'Guru',
     salary: 9000000,
     loan: 18000000,
-    collateral: 'Honda Scoopy'
+    collateral: 'Honda Scoopy',
+    isSurveyDone: false,
   },
   {
     id: 5,
@@ -53,8 +57,9 @@ export const dummyCrediturs: Creditur[] = [
     occupation: 'Desainer Grafis',
     salary: 11000000,
     loan: 22000000,
-    collateral: 'Honda Supra X 125'
-  }
+    collateral: 'Honda Supra X 125',
+    isSurveyDone: false,
+  },
 ];
 
 export const dummySurveys: Survey[] = [
@@ -63,68 +68,67 @@ export const dummySurveys: Survey[] = [
     id_creditur: 1,
     val_occupation: true,
     val_address: true,
-    collateral_condition: Condition.GOOD
+    collateral_condition: Condition.GOOD,
   },
   {
     id: 2,
     id_creditur: 2,
     val_occupation: false,
     val_address: true,
-    collateral_condition: Condition.BAD
+    collateral_condition: Condition.BAD,
   },
   {
     id: 3,
     id_creditur: 3,
     val_occupation: true,
     val_address: false,
-    collateral_condition: Condition.GOOD
+    collateral_condition: Condition.GOOD,
   },
   {
     id: 4,
     id_creditur: 4,
     val_occupation: false,
     val_address: false,
-    collateral_condition: Condition.BAD
+    collateral_condition: Condition.BAD,
   },
   {
     id: 5,
     id_creditur: 5,
     val_occupation: true,
     val_address: true,
-    collateral_condition: Condition.GOOD
-  }
+    collateral_condition: Condition.GOOD,
+  },
 ];
-
 
 export const dummyCreditScores: CreditScore[] = [
   {
     id: 1,
     name: 'Andi Saputra',
     credit_score: 720,
-    status: Status.APPROVED
+    status: Status.APPROVED,
   },
   {
     id: 2,
     name: 'Siti Aminah',
     credit_score: 650,
-    status: Status.PENDING
+    status: Status.PENDING,
   },
   {
     id: 3,
     name: 'Budi Santoso',
     credit_score: 580,
-    status: Status.REJECTED
+    status: Status.REJECTED,
   },
   {
     id: 4,
     name: 'Dewi Lestari',
     credit_score: 690,
-    status: Status.APPROVED
+    status: Status.APPROVED,
   },
   {
     id: 5,
     name: 'Rizky Pratama',
     credit_score: 610,
-    status: Status.PENDING
-  }
+    status: Status.PENDING,
+  },
 ];
