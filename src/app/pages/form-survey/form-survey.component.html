@@ -4,6 +4,16 @@
 </header>
 
 <div class="form-container">
+    <div>
+      <h2>User ID: {{ id }}</h2>
+      <p>{{ creditur?.name }}</p>
+      <p>{{ creditur?.age }}</p>
+      <p>{{ creditur?.address }}</p>
+      <p>{{ creditur?.occupation }}</p>
+      <p>{{ creditur?.salary }}</p>
+      <p>{{ creditur?.loan }}</p>
+      <p>{{ creditur?.collateral }}</p>
+    </div>
   <form action="" (ngSubmit)="onSubmit()" [formGroup]="form">
     <div class="form-group">
       <label for="occupation">Occupation Check</label>
