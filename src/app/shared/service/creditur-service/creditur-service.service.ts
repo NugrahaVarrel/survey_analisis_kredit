@@ -39,9 +39,11 @@ export class CrediturService {
   getCrediturById(id: number) {
     return this.apiService.getById(this.crediturUrl, id);
   }
-  
-  generateId() {
-    return this.crediturData.length + 1;
+
+  generateId(): Observable<number> {
+    return this.apiService
+      .getLength(this.crediturUrl)
+      .pipe(map((data) => data.length + 1));
   }
 
   updateCrediturSurveyDone(id: number): void {

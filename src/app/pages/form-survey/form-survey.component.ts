@@ -73,46 +73,55 @@ export class FormSurveyComponent implements OnInit {
   }
 
   onSubmit() {
-    const surveyId = this.surveyService.generateId();
-    const survey: Survey = {
-      id: surveyId,
-      id_creditur: Number(this.id),
-      val_occupation: this.form.value.occupation === 'true',
-      val_address: this.form.value.address === 'true',
-      collateral_condition: this.form.value.collateral_condition,
-    };
+    this.surveyService.generateId().subscribe({
+      next: (surveyId) => {
+        const survey: Survey = {
+          id: surveyId,
+          id_creditur: Number(this.id),
+          val_occupation: this.form.value.occupation === 'true',
+          val_address: this.form.value.address === 'true',
+          collateral_condition: this.form.value.collateral_condition,
+        };
 
-    this.surveyService.addSurvey(survey).subscribe({
-      next: () => {},
-      error: (err) => {
-        console.error('Error adding survey:', err);
+        this.surveyService.addSurvey(survey).subscribe({
+          next: () => {},
+          error: (err) => {
+            console.error('Error adding survey:', err);
+          },
+        });
+
+        this.crediturService.updateCrediturSurveyDone(this.id);
+        if (this.creditur) {
+          const creditScoreAndStatus =
+            this.creditScoreService.countCreditScores(
+              survey.collateral_condition,
+              this.creditur.loan,
+              this.creditur.salary
+            );
+
+          this.creditScoreService.generateId().subscribe({
+            next: (creditScoreId) => {
+              const creditScore: CreditScore = {
+                id: creditScoreId,
+                survey_id: surveyId,
+                name: this.creditur?.name || '',
+                credit_score: creditScoreAndStatus.score,
+                status: creditScoreAndStatus.status,
+                isStatusChanged: false,
+              };
+
+              this.creditScoreService.addCreditScore(creditScore).subscribe({
+                next: () => {
+                  this.router.navigate(['']);
+                },
+                error: (err) => {
+                  console.error('Error adding credit score:', err);
+                },
+              });
+            },
+          });
+        }
       },
     });
-
-    this.crediturService.updateCrediturSurveyDone(this.id);
-    if (this.creditur) {
-      const creditScoreAndStatus = this.creditScoreService.countCreditScores(
-        survey.collateral_condition,
-        this.creditur.loan,
-        this.creditur.salary
-      );
-      const creditScore: CreditScore = {
-        id: this.creditScoreService.generateId(),
-        survey_id: surveyId,
-        name: this.creditur.name,
-        credit_score: creditScoreAndStatus.score,
-        status: creditScoreAndStatus.status,
-        isStatusChanged: false,
-      };
-
-      this.creditScoreService.addCreditScore(creditScore).subscribe({
-        next: () => {
-          this.router.navigate(['']);
-        },
-        error: (err) => {
-          console.error('Error adding credit score:', err);
-        },
-      });
-    }
   }
 }

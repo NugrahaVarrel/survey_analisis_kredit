@@ -81,50 +81,7 @@
   }
 }
 
-/* Badge status */
-.status-badge {
-  display: inline-block;
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: white;
-  margin-top: 5px;
 
-  &.approved {
-    background: #1dd1a1;
-  }
-  &.pending {
-    background: #f39c12;
-  }
-  &.rejected {
-    background: #e74c3c;
-  }
-}
-
-/* Dropdown ubah status */
-.status-container {
-  select {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.08);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    margin-top: 10px;
-    outline: none;
-
-    option {
-      background: #2a2a40;
-      color: #fff;
-    }
-
-    &:focus {
-      border: 1px solid #4ea8de;
-      box-shadow: 0 0 10px rgba(78, 168, 222, 0.6);
-    }
-  }
-}
 
 .detail-section {
   h2 {
@@ -148,6 +105,10 @@
       font-weight: 600;
       color: #ddd;
     }
+
+    > span{
+        margin-left: 5px;
+    }
   }
 }
 
@@ -169,20 +130,6 @@
   font-weight: 600;
   color: #fff;
   transition: width 0.4s ease;
-}
-
-/* Status text */
-.status-text {
-  font-weight: 600;
-  &.approved {
-    color: #1dd1a1;
-  }
-  &.pending {
-    color: #f39c12;
-  }
-  &.rejected {
-    color: #e74c3c;
-  }
 }
 
 /* Buttons */
@@ -219,6 +166,11 @@
       &:hover {
         background: #16a085;
       }
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
   }
 }
