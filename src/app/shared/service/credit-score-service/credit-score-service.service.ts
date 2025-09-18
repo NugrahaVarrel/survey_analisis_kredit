@@ -2,34 +2,47 @@ import { Injectable } from '@angular/core';
 import { CreditScore } from '../../interface/credit_score';
 import { dummyCreditScores } from '../../data';
 import { Status } from '../../interface/status';
+import { ApiService } from '../api/api-service.service';
+import { map } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CreditScoreService {
-  creditScoreData: CreditScore[];
+  creditScoreData: CreditScore[] = [];
 
-  constructor() {
-    this.creditScoreData = dummyCreditScores
-   }
+  constructor(private apiService: ApiService) {}
 
   getAllCreditScore() {
-    return this.creditScoreData;
+    return this.apiService.getCreditScore().pipe(map((data) => {
+      return data.map((creditScore: any) => ({
+        id: Number(creditScore.id),
+        name: creditScore.name,
+        survey_id: Number(creditScore.survey_id),
+        credit_score: Number(creditScore.credit_score),
+        status: creditScore.status as Status,
+        isStatusChanged: creditScore.isStatusChanged
+      }));
+    }));
   }
 
   addCreditScore(creditScore: CreditScore) {
-    this.creditScoreData.push(creditScore);
+    return this.apiService.postCreditScore(creditScore);
   }
 
   getCreditScoreById(id: number) {
-    return this.creditScoreData.find(creditScore => creditScore.id == id);
+    return this.apiService.getCreditScoreById(id);
   }
 
   generateId() {
     return this.creditScoreData.length + 1;
   }
 
-  countCreditScores(collateral_condition: string, loan: number, salary: number) {
+  countCreditScores(
+    collateral_condition: string,
+    loan: number,
+    salary: number
+  ) {
     let score = 0;
 
     // Kondisi barang

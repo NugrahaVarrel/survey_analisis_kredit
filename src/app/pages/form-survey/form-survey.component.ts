@@ -88,7 +88,7 @@ export class FormSurveyComponent implements OnInit {
         console.error('Error adding survey:', err);
       },
     });
-    
+
     this.crediturService.updateCrediturSurveyDone(this.id);
     if (this.creditur) {
       const creditScoreAndStatus = this.creditScoreService.countCreditScores(
@@ -104,8 +104,15 @@ export class FormSurveyComponent implements OnInit {
         status: creditScoreAndStatus.status,
         isStatusChanged: false,
       };
-      this.creditScoreService.addCreditScore(creditScore);
+
+      this.creditScoreService.addCreditScore(creditScore).subscribe({
+        next: () => {
+          this.router.navigate(['']);
+        },
+        error: (err) => {
+          console.error('Error adding credit score:', err);
+        },
+      });
     }
-    this.router.navigate(['']);
   }
 }
