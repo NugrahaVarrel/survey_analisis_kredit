@@ -1,0 +1,25 @@
+<app-header
+  [title]="'Login'"
+  [aName]="'⬅ Kembali'"
+  [aRoute]="''"
+></app-header>
+
+<div class="auth-container">
+  <h1>Login</h1>
+  <form (ngSubmit)="onLogin()" [formGroup]="loginForm">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" placeholder="Masukkan email" />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input id="password" type="password" formControlName="password" placeholder="Masukkan password" />
+    </div>
+
+    <button type="submit">Login</button>
+  </form>
+  <p class="switch">
+    Belum punya akun? <a routerLink="/register">Register</a>
+  </p>
+</div>
