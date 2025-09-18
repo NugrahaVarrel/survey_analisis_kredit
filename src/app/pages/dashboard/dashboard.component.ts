@@ -80,10 +80,18 @@ export class DashboardComponent implements OnInit {
       },
     });
 
-    this.creditScoreDataObject.data =
-      this.creditScoreService.getAllCreditScore();
-    this.creditScoreDataObject.headers = Object.keys(
-      this.creditScoreDataObject.data[0]
-    );
+    this.creditScoreService.getAllCreditScore().subscribe({
+      next: (creditScores) => {
+        this.creditScoreDataObject.data = creditScores;
+        if (this.creditScoreDataObject.data?.length != 0) {
+          this.creditScoreDataObject.headers = Object.keys(
+            this.creditScoreDataObject.data?.[0]
+          );
+        }
+      },
+      error: (err) => {
+        console.error('Error loading creditur:', err);
+      },
+    });
   }
 }

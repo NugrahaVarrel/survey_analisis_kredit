@@ -29,7 +29,7 @@ export class SurveyService {
   }
 
   getSurveyById(id: number) {
-    return this.surveyData.find((survey) => survey.id == id);
+    return this.apiService.getById(this.surveyUrl, id);
   }
 
   generateId() {

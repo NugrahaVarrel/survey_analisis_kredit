@@ -35,13 +35,20 @@ export class SurveyDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.survey = this.surveyService.getSurveyById(this.surveyId);
-    if (this.survey) {
-      this.getCrediturData(this.survey.id_creditur);
-      this.creditScore = this.creditScoreService.getCreditScoreById(
-        this.surveyId
-      );
-    }
+    this.loadData();
+  }
+
+  loadData() {
+    return this.surveyService.getSurveyById(this.surveyId).subscribe({
+      next: (survey) => {
+        this.survey = survey;
+        this.getCrediturData(survey.id_creditur);
+        this.getCreditScoreData(survey.id);
+      },
+      error: (err) => {
+        console.error('Error loading survey:', err);
+      },
+    });
   }
 
   getCrediturData(id: number) {
@@ -65,7 +72,27 @@ export class SurveyDetailComponent implements OnInit {
     });
   }
 
-  getStatusType(status: Status | undefined): 'primary' | 'success' | 'warning' | 'danger' | 'info' {
+  getCreditScoreData(id: number) {
+    return this.creditScoreService.getCreditScoreById(id).subscribe({
+      next: (creditScore) => {
+        this.creditScore = {
+          id: Number(creditScore.id),
+          name: creditScore.name,
+          survey_id: Number(creditScore.survey_id),
+          credit_score: Number(creditScore.credit_score),
+          status: creditScore.status as Status,
+          isStatusChanged: creditScore.isStatusChanged
+        };
+      },
+      error: (err) => {
+        console.error('Error loading creditScore:', err);
+      },
+    });
+  }
+
+  getStatusType(
+    status: Status | undefined
+  ): 'primary' | 'success' | 'warning' | 'danger' | 'info' {
     switch (status) {
       case Status.APPROVED:
         return 'success';
