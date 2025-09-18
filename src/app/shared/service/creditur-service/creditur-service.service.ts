@@ -33,7 +33,7 @@ export class CrediturService {
   }
 
   addCreditur(creditur: Creditur) {
-    this.crediturData.push(creditur);
+    return this.apiService.post(this.crediturUrl, creditur);
   }
 
   getCrediturById(id: number) {
