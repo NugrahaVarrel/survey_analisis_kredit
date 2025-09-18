@@ -1,0 +1,59 @@
+<header>
+  <h1>Tambah Creditur</h1>
+  <a routerLink="/dashboard">⬅ Kembali</a>
+</header>
+
+<div class="form-container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Nama</label>
+      <input type="text" formControlName="name" />
+    </div>
+
+    <div class="form-group">
+      <label>Usia</label>
+      <input type="number" formControlName="age" />
+      <small
+        *ngIf="form.controls['age'].invalid && form.controls['age'].touched"
+        class="error"
+      >
+        Usia minimal 18 tahun
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label>Alamat</label>
+      <input type="text" formControlName="address" />
+    </div>
+
+    <div class="form-group">
+      <label>Pekerjaan</label>
+      <input type="text" formControlName="occupation" />
+    </div>
+
+    <div class="form-group">
+      <label>Penghasilan (Rp)</label>
+      <input type="number" formControlName="salary" />
+      <small
+        *ngIf="
+          form.controls['salary'].invalid && form.controls['salary'].touched
+        "
+        class="error"
+      >
+        Penghasilan tidak boleh kosong
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label>Pinjaman (Rp)</label>
+      <input type="number" formControlName="loan" />
+    </div>
+
+    <div class="form-group">
+      <label>Collateral</label>
+      <input type="text" formControlName="collateral" />
+    </div>
+
+    <button type="submit">Simpan</button>
+  </form>
+</div>

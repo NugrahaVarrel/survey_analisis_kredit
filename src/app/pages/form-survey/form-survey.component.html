@@ -2,12 +2,12 @@
 
 <div class="form-container">
     <div>
-      <h2>User ID: {{ id }}</h2>
-      <p>{{ creditur?.name }}</p>
-      <p>{{ creditur?.age }}</p>
-      <p>{{ creditur?.address }}</p>
-      <p>{{ creditur?.occupation }}</p>
-      <p>{{ creditur?.collateral }}</p>
+      <h2>User ID : {{ id }}</h2>
+      <p>Name : {{ creditur?.name }}</p>
+      <p>Age : {{ creditur?.age }}</p>
+      <p>Address : {{ creditur?.address }}</p>
+      <p>Occupation : {{ creditur?.occupation }}</p>
+      <p>Collateral : {{ creditur?.collateral }}</p>
     </div>
   <form action="" (ngSubmit)="onSubmit()" [formGroup]="form">
     <div class="form-group">
