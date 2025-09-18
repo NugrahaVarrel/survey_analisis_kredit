@@ -47,6 +47,184 @@
   }
 }
 
+/* Hasil Skoring Kredit */
+.score-container {
+  .credit-score {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #fff;
+  }
+
+  .progress-bar {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    height: 18px;
+
+    .progress {
+      height: 100%;
+      transition: width 0.3s ease;
+    }
+
+    &.low .progress {
+      background: #e74c3c;
+    }
+    &.medium .progress {
+      background: #f39c12;
+    }
+    &.high .progress {
+      background: #1dd1a1;
+    }
+  }
+}
+
+/* Badge status */
+.status-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: white;
+  margin-top: 5px;
+
+  &.approved {
+    background: #1dd1a1;
+  }
+  &.pending {
+    background: #f39c12;
+  }
+  &.rejected {
+    background: #e74c3c;
+  }
+}
+
+/* Dropdown ubah status */
+.status-container {
+  select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    margin-top: 10px;
+    outline: none;
+
+    option {
+      background: #2a2a40;
+      color: #fff;
+    }
+
+    &:focus {
+      border: 1px solid #4ea8de;
+      box-shadow: 0 0 10px rgba(78, 168, 222, 0.6);
+    }
+  }
+}
+
+.detail-section {
+  h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #4ea8de;
+    margin-bottom: 8px;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 10px 0 15px;
+  }
+
+  p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+
+    strong {
+      font-weight: 600;
+      color: #ddd;
+    }
+  }
+}
+
+/* Progress bar */
+.progress-container {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 15px;
+}
+
+.progress-fill {
+  height: 22px;
+  background: linear-gradient(45deg, #4ea8de, #1dd1a1);
+  text-align: center;
+  line-height: 22px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  transition: width 0.4s ease;
+}
+
+/* Status text */
+.status-text {
+  font-weight: 600;
+  &.approved {
+    color: #1dd1a1;
+  }
+  &.pending {
+    color: #f39c12;
+  }
+  &.rejected {
+    color: #e74c3c;
+  }
+}
+
+/* Buttons */
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+
+  .btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
+    text-align: center;
+
+    &.btn-danger {
+      background: #e74c3c;
+      &:hover {
+        background: #c0392b;
+      }
+    }
+    &.btn-warning {
+      background: #f39c12;
+      &:hover {
+        background: #d68910;
+      }
+    }
+    &.btn-success {
+      background: #1dd1a1;
+      &:hover {
+        background: #16a085;
+      }
+    }
+  }
+}
+
+
+
 section {
   display: flex;
   gap: 30px;

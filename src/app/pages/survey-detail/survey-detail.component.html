@@ -36,19 +36,50 @@
   </section>
   <section>
     <app-card>
-      <h2>Hasil Skoring Kredit</h2>
-      <p>Skor Kredit: {{ creditScore?.credit_score }}</p>
+      <div class="detail-section">
+        <h2>Hasil Scoring Kredit</h2>
+        <hr />
+        <p><strong>Skor:</strong> {{ creditScore?.credit_score }}</p>
+        <p>
+          <strong>Kategori Risiko:</strong>
+          {{
+            creditScore?.credit_score! >= 80
+              ? "Rendah"
+              : creditScore?.credit_score! >= 50
+              ? "Sedang"
+              : "Tinggi"
+          }}
+        </p>
+        <div class="progress-container">
+          <div
+            class="progress-fill"
+            [style.width.%]="creditScore?.credit_score"
+          >
+            {{ creditScore?.credit_score }}%
+          </div>
+        </div>
+      </div>
     </app-card>
+
     <app-card>
-      <h2>Rekomendasi Sistem</h2>
-      @if(!creditScore?.isStatusChanged){
-        <p>Rekomendasi Status: <app-label text="{{ creditScore?.status }}" [type]="getStatusType(creditScore?.status)">{{ creditScore?.status }}</app-label></p>
-      } @else {
-        <p>Status: {{ creditScore?.status }}</p>
-      }
-      <span>
-        <p>Ubah Status:</p>
-      </span>
+      <div class="detail-section">
+        <h2>Rekomendasi Sistem</h2>
+        <hr />
+        <p>
+          <strong>Status:</strong>
+          <span
+            class="status-text"
+            [ngClass]="creditScore?.status?.toLowerCase()"
+          >
+            {{ creditScore?.status }}
+          </span>
+        </p>
+        <div class="action-buttons">
+          <button class="btn btn-danger">Tolak Manual</button>
+          <button class="btn btn-warning">Review Manual</button>
+          <button class="btn btn-success">Setujui Manual</button>
+        </div>
+      </div>
     </app-card>
   </section>
 </div>
