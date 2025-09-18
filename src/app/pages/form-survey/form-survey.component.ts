@@ -48,7 +48,28 @@ export class FormSurveyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.creditur = this.crediturService.getCrediturById(this.id);
+    this.getCrediturData(this.id);
+  }
+
+  getCrediturData(id: number) {
+    return this.crediturService.getCrediturById(id).subscribe({
+      next: (creditur) => {
+        this.creditur = {
+          id: Number(creditur.id),
+          name: creditur.name,
+          age: creditur.age,
+          address: creditur.address,
+          occupation: creditur.occupation,
+          salary: Number(creditur.salary),
+          loan: Number(creditur.loan),
+          collateral: creditur.collateral,
+          isSurveyDone: creditur.isSurveyDone,
+        };
+      },
+      error: (err) => {
+        console.error('Error loading creditur:', err);
+      },
+    });
   }
 
   onSubmit() {
@@ -61,7 +82,13 @@ export class FormSurveyComponent implements OnInit {
       collateral_condition: this.form.value.collateral_condition,
     };
 
-    this.surveyService.addSurvey(survey);
+    this.surveyService.addSurvey(survey).subscribe({
+      next: () => {},
+      error: (err) => {
+        console.error('Error adding survey:', err);
+      },
+    });
+    
     this.crediturService.updateCrediturSurveyDone(this.id);
     if (this.creditur) {
       const creditScoreAndStatus = this.creditScoreService.countCreditScores(
@@ -71,9 +98,11 @@ export class FormSurveyComponent implements OnInit {
       );
       const creditScore: CreditScore = {
         id: this.creditScoreService.generateId(),
+        survey_id: surveyId,
         name: this.creditur.name,
         credit_score: creditScoreAndStatus.score,
         status: creditScoreAndStatus.status,
+        isStatusChanged: false,
       };
       this.creditScoreService.addCreditScore(creditScore);
     }

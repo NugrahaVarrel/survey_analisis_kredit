@@ -1,0 +1,58 @@
+.container {
+  max-width: 900px;
+  margin: 60px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+
+  .data-container {
+    flex: 1;
+    padding: 20px;
+    border-left: 4px solid #4ea8de;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    box-shadow: inset 0 0 12px rgba(78, 168, 222, 0.2);
+    height: 100%;
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, #4ea8de, #1dd1a1);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 0.95rem;
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 6px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+
+      strong {
+        color: #4ea8de;
+        font-weight: 600;
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+section {
+  display: flex;
+  gap: 30px;
+
+  > app-card {
+    flex: 1;
+    display: flex;
+  }
+}

@@ -22,7 +22,7 @@ export class CreditScoreService {
   }
 
   getCreditScoreById(id: number) {
-    return this.creditScoreData.find(creditScore => creditScore.id === id);
+    return this.creditScoreData.find(creditScore => creditScore.id == id);
   }
 
   generateId() {

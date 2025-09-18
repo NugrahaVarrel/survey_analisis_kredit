@@ -1,31 +1,35 @@
 import { Injectable } from '@angular/core';
 import { Survey } from '../../interface/survey';
 import { dummySurveys } from '../../data';
+import { map, Observable } from 'rxjs';
+import { ApiService } from '../api/api-service.service';
+import { Condition } from '../../interface/condition';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SurveyService {
-  surveyData: Survey[];
+  surveyData: Survey[] = [];
+  surveyUrl: string = 'survey';
 
-  constructor() { 
-    this.surveyData = dummySurveys
-  }
+  constructor(private apiService: ApiService) {}
 
-  getAllSurvey() {
-    return (this.surveyData.map(survey => {
-      return {
-        id: survey.id,
-        id_creditur: survey.id_creditur,
-        val_occupation: survey.val_occupation ? 'Sesuai' : 'Tidak Sesuai',
-        val_address: survey.val_address ? 'Sesuai' : 'Tidak Sesuai',
-        collateral_condition: survey.collateral_condition,
-      };
-    }));
+  getAllSurvey(): Observable<any[]> {
+    return this.apiService.get(this.surveyUrl).pipe(
+      map((data: any[]) =>
+        data.map((survey: any) => ({
+          id: survey.id,
+          id_creditur: survey.id_creditur,
+          val_occupation: survey.val_occupation ? 'Sesuai' : 'Tidak Sesuai',
+          val_address: survey.val_address ? 'Sesuai' : 'Tidak Sesuai',
+          collateral_condition: survey.collateral_condition as Condition
+        }))
+      )
+    );
   }
 
   getSurveyById(id: number) {
-    return this.surveyData.find(survey => survey.id === id);
+    return this.surveyData.find((survey) => survey.id == id);
   }
 
   generateId() {
@@ -33,10 +37,10 @@ export class SurveyService {
   }
 
   getSurveyByCrediturId(id: number) {
-    return this.surveyData.filter(survey => survey.id_creditur === id);
+    return this.surveyData.filter((survey) => survey.id_creditur == id);
   }
 
   addSurvey(survey: Survey) {
-    this.surveyData.push(survey);
+    return this.apiService.post(this.surveyUrl, survey);
   }
 }

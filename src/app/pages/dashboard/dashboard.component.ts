@@ -48,13 +48,37 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.surveyDataObject.data = this.surveyService.getAllSurvey();
-    this.surveyDataObject.headers = Object.keys(this.surveyDataObject.data[0]);
+    this.loadInitData();
+  }
 
-    this.crediturDataObject.data = this.crediturService.getAllCreditur();
-    this.crediturDataObject.headers = Object.keys(
-      this.crediturDataObject.data[0]
-    );
+  loadInitData() {
+    this.surveyService.getAllSurvey().subscribe({
+      next: (survey) => {
+        this.surveyDataObject.data = survey;
+        if (this.surveyDataObject.data?.length != 0) {
+          this.surveyDataObject.headers = Object.keys(
+            this.surveyDataObject.data?.[0]
+          );
+        }
+      },
+      error: (err) => {
+        console.error('Error loading creditur:', err);
+      },
+    });
+
+    this.crediturService.getAllCreditur().subscribe({
+      next: (crediturs) => {
+        this.crediturDataObject.data = crediturs;
+        if (this.crediturDataObject.data?.length != 0) {
+          this.crediturDataObject.headers = Object.keys(
+            this.crediturDataObject.data?.[0]
+          );
+        }
+      },
+      error: (err) => {
+        console.error('Error loading creditur:', err);
+      },
+    });
 
     this.creditScoreDataObject.data =
       this.creditScoreService.getAllCreditScore();

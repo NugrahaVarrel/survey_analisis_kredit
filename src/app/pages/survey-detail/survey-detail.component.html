@@ -1,1 +1,54 @@
-<p>survey-detail works!</p>
+<app-header
+  [title]="'Survey Detail'"
+  [aName]="'⬅ Kembali'"
+  [aRoute]="''"
+></app-header>
+
+<div class="container">
+  <section>
+    <app-card>
+      <div class="data-container">
+        <h2>Informasi Creditur</h2>
+        <p>ID: {{ creditur?.id }}</p>
+        <p>{{ creditur?.name }}</p>
+        <p>{{ creditur?.age }}</p>
+        <p>{{ creditur?.address }}</p>
+        <p>{{ creditur?.occupation }}</p>
+        <p>{{ creditur?.salary?.toLocaleString() }}</p>
+        <p>{{ creditur?.loan?.toLocaleString() }}</p>
+        <p>{{ creditur?.collateral }}</p>
+      </div>
+    </app-card>
+    <app-card>
+      <div class="data-container">
+        <h2>Hasil Survey</h2>
+        <p>
+          Kesesuaian Alamat:
+          {{ survey?.val_address ? "Sesuai" : "Tidak Sesuai" }}
+        </p>
+        <p>
+          Kesesuaian Pekerjaan:
+          {{ survey?.val_occupation ? "Sesuai" : "Tidak Sesuai" }}
+        </p>
+        <p>Kondisi Barang: {{ survey?.collateral_condition }}</p>
+      </div>
+    </app-card>
+  </section>
+  <section>
+    <app-card>
+      <h2>Hasil Skoring Kredit</h2>
+      <p>Skor Kredit: {{ creditScore?.credit_score }}</p>
+    </app-card>
+    <app-card>
+      <h2>Rekomendasi Sistem</h2>
+      @if(!creditScore?.isStatusChanged){
+        <p>Rekomendasi Status: <app-label text="{{ creditScore?.status }}" [type]="getStatusType(creditScore?.status)">{{ creditScore?.status }}</app-label></p>
+      } @else {
+        <p>Status: {{ creditScore?.status }}</p>
+      }
+      <span>
+        <p>Ubah Status:</p>
+      </span>
+    </app-card>
+  </section>
+</div>

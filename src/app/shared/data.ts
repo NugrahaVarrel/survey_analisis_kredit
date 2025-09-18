@@ -103,32 +103,42 @@ export const dummySurveys: Survey[] = [
 export const dummyCreditScores: CreditScore[] = [
   {
     id: 1,
+    survey_id: 1,
     name: 'Andi Saputra',
     credit_score: 720,
     status: Status.APPROVED,
+    isStatusChanged: false,
   },
   {
     id: 2,
+    survey_id: 2,
     name: 'Siti Aminah',
     credit_score: 650,
     status: Status.PENDING,
+    isStatusChanged: false,
   },
   {
     id: 3,
+    survey_id: 3,
     name: 'Budi Santoso',
     credit_score: 580,
     status: Status.REJECTED,
+    isStatusChanged: false,
   },
   {
     id: 4,
+    survey_id: 4,
     name: 'Dewi Lestari',
     credit_score: 690,
     status: Status.APPROVED,
+    isStatusChanged: false,
   },
   {
     id: 5,
+    survey_id: 5,
     name: 'Rizky Pratama',
     credit_score: 610,
     status: Status.PENDING,
+    isStatusChanged: false,
   },
 ];
