@@ -8,13 +8,14 @@ import { Survey } from '../../shared/interface/survey';
 import { SurveyService } from '../../shared/service/survey-service/survey-service.service';
 import { CreditScore } from '../../shared/interface/credit_score';
 import { CreditScoreService } from '../../shared/service/credit-score-service/credit-score-service.service';
-import { LabelComponent } from '../../shared/component/label/label.component';
 import { Status } from '../../shared/interface/status';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-survey-detail',
   standalone: true,
-  imports: [HeaderComponent, CardComponent, LabelComponent],
+  imports: [HeaderComponent, CardComponent, CommonModule, FormsModule],
   templateUrl: './survey-detail.component.html',
   styleUrl: './survey-detail.component.scss',
 })
