@@ -3,6 +3,7 @@ import { FormSurveyComponent } from './pages/form-survey/form-survey.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SurveyDetailComponent } from './pages/survey-detail/survey-detail.component';
+import { FormCrediturComponent } from './pages/form-creditur/form-creditur.component';
 
 export const routes: Routes = [
   {
@@ -12,6 +13,10 @@ export const routes: Routes = [
   {
     path: 'form-survey/:id',
     component: FormSurveyComponent,
+  },
+  {
+    path: 'form-creditur',
+    component: FormCrediturComponent
   },
   {
     path: 'survey-detail/:id',
