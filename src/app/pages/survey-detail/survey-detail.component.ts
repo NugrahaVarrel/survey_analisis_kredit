@@ -11,11 +11,18 @@ import { CreditScoreService } from '../../shared/service/credit-score-service/cr
 import { Status } from '../../shared/interface/status';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { LabelComponent } from '../../shared/component/label/label.component';
 
 @Component({
   selector: 'app-survey-detail',
   standalone: true,
-  imports: [HeaderComponent, CardComponent, CommonModule, FormsModule],
+  imports: [
+    HeaderComponent,
+    CardComponent,
+    CommonModule,
+    FormsModule,
+    LabelComponent,
+  ],
   templateUrl: './survey-detail.component.html',
   styleUrl: './survey-detail.component.scss',
 })
@@ -23,8 +30,11 @@ export class SurveyDetailComponent implements OnInit {
   creditur: Creditur | undefined;
   survey: Survey | undefined;
   creditScore: CreditScore | undefined;
+  isUpdating = false;
 
   surveyId: number = 0;
+  creditScoreId: number = 0;
+  Status = Status;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -74,16 +84,17 @@ export class SurveyDetailComponent implements OnInit {
   }
 
   getCreditScoreData(id: number) {
-    return this.creditScoreService.getCreditScoreById(id).subscribe({
+    return this.creditScoreService.getCreditScoreBySurveyId(id).subscribe({
       next: (creditScore) => {
         this.creditScore = {
-          id: Number(creditScore.id),
-          name: creditScore.name,
-          survey_id: Number(creditScore.survey_id),
-          credit_score: Number(creditScore.credit_score),
-          status: creditScore.status as Status,
-          isStatusChanged: creditScore.isStatusChanged
+          id: Number(creditScore[0].id),
+          name: creditScore[0].name,
+          survey_id: Number(creditScore[0].survey_id),
+          credit_score: Number(creditScore[0].credit_score),
+          status: creditScore[0].status as Status,
+          isStatusChanged: creditScore[0].isStatusChanged,
         };
+        this.creditScoreId = this.creditScore.id;
       },
       error: (err) => {
         console.error('Error loading creditScore:', err);
@@ -104,5 +115,23 @@ export class SurveyDetailComponent implements OnInit {
       default:
         return 'primary';
     }
+  }
+
+  updateCreditScoreStatus(status: Status) {
+    if (this.isUpdating) return;
+
+    this.isUpdating = true;
+    this.creditScoreService
+      .updateCreditScoreStatus(this.creditScore?.id || 0, status)
+      .subscribe({
+        next: () => {
+          this.loadData();
+          this.isUpdating = false;
+        },
+        error: (err) => {
+          console.error(err);
+          this.isUpdating = false;
+        },
+      });
   }
 }

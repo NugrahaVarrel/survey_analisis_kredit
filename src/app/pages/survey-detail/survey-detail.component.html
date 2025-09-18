@@ -65,19 +65,42 @@
       <div class="detail-section">
         <h2>Rekomendasi Sistem</h2>
         <hr />
+
         <p>
-          <strong>Status:</strong>
-          <span
-            class="status-text"
-            [ngClass]="creditScore?.status?.toLowerCase()"
-          >
-            {{ creditScore?.status }}
+          @if(!creditScore?.isStatusChanged){
+          <strong>Rekomendasi Status:</strong>
+          } @else { <strong>Status:</strong>}
+          <span>
+            <app-label
+              text="{{ creditScore?.status }}"
+              [type]="getStatusType(creditScore?.status)"
+              >{{ creditScore?.status }}</app-label
+            >
           </span>
         </p>
+
         <div class="action-buttons">
-          <button class="btn btn-danger">Tolak Manual</button>
-          <button class="btn btn-warning">Review Manual</button>
-          <button class="btn btn-success">Setujui Manual</button>
+          <button
+            class="btn btn-danger"
+            [disabled]="isUpdating"
+            (click)="updateCreditScoreStatus(Status.REJECTED)"
+          >
+            Tolak Manual
+          </button>
+          <button
+            class="btn btn-warning"
+            [disabled]="isUpdating"
+            (click)="updateCreditScoreStatus(Status.PENDING)"
+          >
+            Pending Manual
+          </button>
+          <button
+            class="btn btn-success"
+            [disabled]="isUpdating"
+            (click)="updateCreditScoreStatus(Status.APPROVED)"
+          >
+            Setujui Manual
+          </button>
         </div>
       </div>
     </app-card>

@@ -22,7 +22,7 @@ export class SurveyService {
           id_creditur: survey.id_creditur,
           val_occupation: survey.val_occupation ? 'Sesuai' : 'Tidak Sesuai',
           val_address: survey.val_address ? 'Sesuai' : 'Tidak Sesuai',
-          collateral_condition: survey.collateral_condition as Condition
+          collateral_condition: survey.collateral_condition as Condition,
         }))
       )
     );
@@ -32,8 +32,10 @@ export class SurveyService {
     return this.apiService.getById(this.surveyUrl, id);
   }
 
-  generateId() {
-    return this.surveyData.length + 1;
+  generateId(): Observable<number> {
+    return this.apiService
+      .getLength(this.surveyUrl)
+      .pipe(map((data) => data.length + 1));
   }
 
   getSurveyByCrediturId(id: number) {

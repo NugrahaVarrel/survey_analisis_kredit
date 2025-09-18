@@ -16,6 +16,14 @@ export class ApiService {
     return this.http.get(this.mainApi + url);
   }
 
+  getLength(url: string): Observable<any> {
+    return this.http.get(this.mainApi + url);
+  }
+
+  getCreditScoreLength(): Observable<any> {
+    return this.http.get(this.creditScoreApi);
+  }
+
   getById(url: string, id: number): Observable<any> {
     return this.http.get(this.mainApi + url + '/' + id);
   }
@@ -38,5 +46,9 @@ export class ApiService {
 
   getCreditScoreById(id: number): Observable<any> {
     return this.http.get(this.creditScoreApi + '/' + id);
+  }
+
+  putCreditScore(id: number, data: any): Observable<any> {
+    return this.http.put(this.creditScoreApi + '/' + id, data);
   }
 }
