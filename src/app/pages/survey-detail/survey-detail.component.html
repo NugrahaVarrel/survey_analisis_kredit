@@ -44,10 +44,10 @@
           <strong>Kategori Risiko:</strong>
           {{
             creditScore?.credit_score! >= 80
-              ? "Rendah"
+              ? "Tinggi"
               : creditScore?.credit_score! >= 50
               ? "Sedang"
-              : "Tinggi"
+              : "Rendah"
           }}
         </p>
         <div class="progress-container">
