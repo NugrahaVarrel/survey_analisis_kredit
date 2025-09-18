@@ -5,11 +5,12 @@ import { CrediturService } from '../../shared/service/creditur-service/creditur-
 import { CreditScoreService } from '../../shared/service/credit-score-service/credit-score-service.service';
 import { TableMapping } from '../../shared/interface/table_mapping';
 import { HeaderComponent } from '../../shared/component/header/header.component';
+import { CardComponent } from '../../shared/component/card/card.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [TableComponent, HeaderComponent],
+  imports: [TableComponent, HeaderComponent, CardComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })

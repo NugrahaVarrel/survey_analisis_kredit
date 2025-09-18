@@ -1,13 +1,31 @@
-<app-header [title]="'Dashboard'" [aName]="'+ Input Creditur'" [aRoute]="'form-survey'"></app-header>
+<app-header
+  [title]="'Dashboard'"
+  [aName]="'+ Input Creditur'"
+  [aRoute]="'form-survey'"
+></app-header>
 
 <div class="dashboard">
-    <section class="card">
-        <app-table [tableName]="'Creditur Data'" [headers]="crediturDataObject.headers" [data]="crediturDataObject.data" [action]="crediturDataObject.action"></app-table>
-    </section>
-    <section class="card">
-        <app-table [tableName]="'Survey Data'" [headers]="surveyDataObject.headers" [data]="surveyDataObject.data" [action]="surveyDataObject.action"></app-table>
-    </section>
-    <section class="card">
-        <app-table [tableName]="'Credit Score Data'" [headers]="creditScoreDataObject.headers" [data]="creditScoreDataObject.data"></app-table>
-    </section>
+  <app-card>
+    <app-table
+      [tableName]="'Creditur Data'"
+      [headers]="crediturDataObject.headers"
+      [data]="crediturDataObject.data"
+      [action]="crediturDataObject.action"
+    ></app-table>
+  </app-card>
+  <app-card>
+    <app-table
+      [tableName]="'Survey Data'"
+      [headers]="surveyDataObject.headers"
+      [data]="surveyDataObject.data"
+      [action]="surveyDataObject.action"
+    ></app-table>
+  </app-card>
+  <app-card>
+    <app-table
+      [tableName]="'Credit Score Data'"
+      [headers]="creditScoreDataObject.headers"
+      [data]="creditScoreDataObject.data"
+    ></app-table>
+  </app-card>
 </div>
