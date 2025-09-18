@@ -27,6 +27,10 @@ export class CrediturService {
     return this.crediturData.find((creditur) => creditur.id == id)
       ?.isSurveyDone;
   }
+  
+  generateId() {
+    return this.crediturData.length + 1;
+  }
 
   updateCrediturSurveyDone(id: number) {
     let creditur = this.crediturData.find((creditur) => creditur.id == id);
