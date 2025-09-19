@@ -1,33 +1,34 @@
 <app-header
   [title]="'Register'"
-  [aName]="'⬅ Kembali'"
+  [aName]="''"
   [aRoute]="''"
+  [isLogOut]="false"
 ></app-header>
 
 <div class="auth-container">
   <h1>Register</h1>
   <form (ngSubmit)="onRegister()" [formGroup]="registerForm">
     <div class="form-group">
-      <label for="name">Nama Lengkap</label>
-      <input id="name" type="text" formControlName="name" placeholder="Masukkan nama lengkap" />
-    </div>
-
-    <div class="form-group">
       <label for="email">Email</label>
       <input id="email" type="email" formControlName="email" placeholder="Masukkan email" />
+      <p *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched && registerForm.get('email')?.errors?.['required']" class="error">Email harus diisi</p>
+      <p *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched && registerForm.get('email')?.errors?.['email']" class="error">Email tidak valid</p>
     </div>
 
     <div class="form-group">
       <label for="password">Password</label>
       <input id="password" type="password" formControlName="password" placeholder="Masukkan password" />
+      <p *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched && registerForm.get('password')?.errors?.['required']" class="error">Password harus diisi</p>
+      <p *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched && registerForm.get('password')?.errors?.['minlength']" class="error">Password minimal 6 karakter</p>
     </div>
 
     <div class="form-group">
       <label for="confirmPassword">Konfirmasi Password</label>
       <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="Ulangi password" />
+      <p *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched && registerForm.get('password')?.value !== registerForm.get('confirmPassword')?.value" class="error">Password dan Konfirmasi Password tidak sama!</p>
     </div>
 
-    <button type="submit">Register</button>
+    <button type="submit" [disabled]="!registerForm.valid">Register</button>
   </form>
   <p class="switch">
     Sudah punya akun? <a routerLink="/login">Login</a>
