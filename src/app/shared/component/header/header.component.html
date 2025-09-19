@@ -1,4 +1,7 @@
 <header>
-  <h1>{{title}}</h1>
-  <a routerLink="{{aRoute}}">{{aName}}</a>
+  <h1>{{ title }}</h1>
+  <div>
+    <a routerLink="{{ aRoute }}">{{ aName }}</a>
+    <button [ngStyle]="!isLogOut ? { display: 'none' } : {  }" (click)="logout()">Log Out</button>
+  </div>
 </header>
